@@ -4,10 +4,12 @@ import Logo from "../../media/logo720studio.png";
 
 
 function Navbar() {
+
+
   return (
     <div>
-      <AppBar position="sticky">
-        <Toolbar>
+      <AppBar position="sticky" style={{ backgroundColor: '#fff',color:"#000" }}>
+        <Toolbar  >
           <IconButton size="small" edge="start" aria-label="logo">
             <img src={Logo} alt="logo720" height={100} />
           </IconButton>

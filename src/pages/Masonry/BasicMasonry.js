@@ -2,6 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 // import Paper from '@mui/material/Paper';
 import Masonry from '@mui/lab/Masonry';
+import "./BasicMasonry.css";
+
 // import { styled } from '@mui/material/styles';
 
 // const Label = styled(Paper)(({ theme }) => ({
@@ -16,8 +18,8 @@ import Masonry from '@mui/lab/Masonry';
 
 export default function BasicMasonry() {
   return (
-    <Box>
-      <Masonry columns={{xs: 1, sm: 2, md: 4}} spacing={1}>
+    <Box m={2} pt={3}>
+      <Masonry columns={{xs: 1, sm: 2, md: 4}} spacing={1} >
         {itemData.map((item, index) => (
           <div key={index}>
             {/* <Label>{index + 1}</Label> */}
@@ -30,7 +32,8 @@ export default function BasicMasonry() {
                 borderBottomLeftRadius: 4,
                 borderBottomRightRadius: 4,
                 display: 'block',
-                width: '100%',
+                margin:'auto',
+                width: '100%'
               }}
             />
           </div>
@@ -50,19 +53,19 @@ const itemData = [
     title: 'Snacks',
   },
   {
-    img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
+    img: 'https://images.pexels.com/photos/2419375/pexels-photo-2419375.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
     title: 'Mushrooms',
   },
   {
-    img: 'https://images.unsplash.com/photo-1529655683826-aba9b3e77383',
+    img: 'https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=850&w=940',
     title: 'Tower',
   },
   {
-    img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
+    img: 'https://picsum.photos/400/600/?random',
     title: 'Sea star',
   },
   {
-    img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+    img: 'https://picsum.photos/1000/1000/?random',
     title: 'Honey',
   },
   {
