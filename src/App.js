@@ -4,7 +4,8 @@ import Contacto from './pages/contacto/Contacto';
 import Inicio from './pages/inicio/Inicio';
 import Login from './pages/login/Login';
 import {Route,Routes} from "react-router-dom";
-import RequireAuth from './fb/RequireAuth';
+import Panel from './pages/panel/Panel';
+import {RequireAuth} from "./fb/RequireAuth";
 
 
 function App() {
@@ -16,10 +17,11 @@ function App() {
         <Route>
           <Route exact path="/" element={<Inicio />} />
           <Route exact path="/contacto" element={<Contacto />} />
+          <Route path="/iniciar" element={<Login />} />
         </Route>
 
         <Route element={<RequireAuth />}>
-          <Route path="/iniciar" element={<Login />} />
+          <Route path="/panel" element={<Panel />} />
         </Route>
         
       </Routes>
