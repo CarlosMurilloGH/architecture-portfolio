@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 // import Paper from '@mui/material/Paper';
 import Masonry from '@mui/lab/Masonry';
-import "./BasicMasonry.css";
+import "./Inicio.css";
 
 // import { styled } from '@mui/material/styles';
 
@@ -16,7 +16,7 @@ import "./BasicMasonry.css";
 //   borderBottomRightRadius: 0,
 // }));
 
-export default function BasicMasonry() {
+export default function Inicio() {
   return (
     <Box m={2} pt={3}>
       <Masonry columns={{xs: 1, sm: 2, md: 4}} spacing={1} >
@@ -112,4 +112,5 @@ const itemData = [
     img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
     title: 'Bike',
   },
+
 ];

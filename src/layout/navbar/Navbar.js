@@ -1,5 +1,6 @@
 import React from 'react';
 import {AppBar, Toolbar, IconButton, Stack, Button} from "@mui/material";
+import { Link } from 'react-router-dom';
 import Logo from "../../media/logo720studio.png";
 
 
@@ -14,8 +15,12 @@ function Navbar() {
             <img src={Logo} alt="logo720" height={100} />
           </IconButton>
           <Stack direction="row" spacing={2}>
-            <Button color="inherit">Home</Button>
-            <Button color="inherit">Contactame</Button>
+            <Button color="inherit">
+              <Link to="/">Inicio</Link>
+            </Button>
+            <Button color="inherit">
+              <Link to="/contacto">Contacto</Link>
+            </Button>
           </Stack>
         </Toolbar>
       </AppBar>
