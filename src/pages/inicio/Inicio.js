@@ -1,36 +1,45 @@
-import * as React from 'react';
+import React,{useEffect, useState} from 'react';
+import { ref, listAll,getDownloadURL } from 'firebase/storage';
+import { storage } from '../../fb/fb';
 import Box from '@mui/material/Box';
-// import Paper from '@mui/material/Paper';
-import Masonry from '@mui/lab/Masonry';
 import "./Inicio.css";
+import { Masonry } from '@mui/lab';
+import Panel from '../panel/Panel';
 
-// import { styled } from '@mui/material/styles';
 
-// const Label = styled(Paper)(({ theme }) => ({
-//   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-//   ...theme.typography.body2,
-//   padding: theme.spacing(0.5),
-//   textAlign: 'center',
-//   color: theme.palette.text.secondary,
-//   borderBottomLeftRadius: 0,
-//   borderBottomRightRadius: 0,
-// }));
 
 export default function Inicio() {
+
+  const [imageUrls, setImageUrls] = useState([]);
+  
+  //eslint-disable-next-line
+  const imagesListRef = ref(storage, "images/");
+
+  useEffect(() => {
+    listAll(imagesListRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageUrls((prev) => [...prev, url]);
+        });
+      });
+    });
+  }, []);
   return (
     <Box m={2} pt={3}>
+      <Panel />
       <Masonry columns={{xs: 1, sm: 2, md: 4}} spacing={1} >
-        {itemData.map((item, index) => (
+        {imageUrls.map((url, index) => (
           <div key={index}>
-            {/* <Label>{index + 1}</Label> */}
             <img
-              src={`${item.img}?w=162&auto=format`}
-              srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
-              alt={item.title}
+              src={`${url}?w=162&auto=format`}
+              srcSet={`${url}?w=162&auto=format&dpr=2 2x`}
+              alt={url.title}
               loading="lazy"
               style={{
                 borderBottomLeftRadius: 4,
                 borderBottomRightRadius: 4,
+                borderTopLeftRadius:4,
+                borderTopRightRadius:4,
                 display: 'block',
                 margin:'auto',
                 width: '100%'
@@ -38,79 +47,11 @@ export default function Inicio() {
             />
           </div>
         ))}
-      </Masonry>
+        </Masonry>
     </Box>
   );
 }
 
-const itemData = [
-  {
-    img: 'https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    title: 'Fern',
-  },
-  {
-    img: 'https://images.pexels.com/photos/2419375/pexels-photo-2419375.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    title: 'Snacks',
-  },
-  {
-    img: 'https://images.pexels.com/photos/2419375/pexels-photo-2419375.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    title: 'Mushrooms',
-  },
-  {
-    img: 'https://images.pexels.com/photos/3586966/pexels-photo-3586966.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=850&w=940',
-    title: 'Tower',
-  },
-  {
-    img: 'https://picsum.photos/400/600/?random',
-    title: 'Sea star',
-  },
-  {
-    img: 'https://picsum.photos/1000/1000/?random',
-    title: 'Honey',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-    title: 'Basketball',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-    title: 'Breakfast',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1627328715728-7bcc1b5db87d',
-    title: 'Tree',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-    title: 'Burger',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
-    title: 'Camera',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-    title: 'Coffee',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1627000086207-76eabf23aa2e',
-    title: 'Camping Car',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-    title: 'Hats',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-    title: 'Tomato basil',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1627328561499-a3584d4ee4f7',
-    title: 'Mountain',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-    title: 'Bike',
-  },
 
-];
+
+

@@ -6,6 +6,7 @@ import Login from './pages/login/Login';
 import {Route,Routes} from "react-router-dom";
 import Panel from './pages/panel/Panel';
 import {RequireAuth} from "./fb/RequireAuth";
+import Footer from './layout/footer/Footer';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         </Route>
         
       </Routes>
+      <Footer />
     </div>
   );
 }

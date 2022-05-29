@@ -9,7 +9,7 @@ function Navbar() {
 
   return (
     <div>
-      <AppBar position="sticky" style={{ backgroundColor: '#fff',color:"#000" }}>
+      <AppBar position="static" style={{ backgroundColor: '#fff',color:"#000",boxShadow:"none" }}>
         <Toolbar  >
           <IconButton size="small" edge="start" aria-label="logo">
             <img src={Logo} alt="logo720" height={100} />
