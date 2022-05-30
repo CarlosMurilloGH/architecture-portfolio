@@ -1,34 +1,48 @@
-import React,{ useState} from 'react';
-import { storage } from '../../fb/fb';
-import { ref, uploadBytes} from 'firebase/storage';
-import {v4} from "uuid";
-import { Input } from '@mui/material';
-
+import { useState } from "react";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { storage } from "../../fb/fb";
 
 function Panel() {
+  const [progress, setProgress] = useState(0);
+  const formHandler = (e) => {
+    e.preventDefault();
+    const file = e.target[0].files[0];
+    uploadFiles(file);
+  };
 
-  const [imageUpload, setImageUpload] = useState(null);
+  const uploadFiles = (file) => {
 
-  const uploadFile = () => {
-    if (imageUpload == null) return;
-    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
-    uploadBytes(imageRef, imageUpload).then(() => {
-     alert("imagen subida");
-      });
-    };
+    if (!file) return;
+    const sotrageRef = ref(storage, `images/${file.name}`);
+    const uploadTask = uploadBytesResumable(sotrageRef, file);
 
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const prog = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgress(prog);
+      },
+      (error) => console.log(error),
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log("File available at", downloadURL);
+        });
+      }
+    );
+  };
 
   return (
     <div className="App">
-      <Input
-        type="file"
-        onChange={(event) => {
-          setImageUpload(event.target.files[0]);
-        }}
-      />
-      <button onClick={uploadFile}> Upload Image</button>
+      <form onSubmit={formHandler}>
+        <input type="file" className="input" />
+        <button type="submit">Upload</button>
+      </form>
+      <hr />
+      <h2>Uploading done {progress}%</h2>
     </div>
   );
 }
 
-export default Panel
+export default Panel;
