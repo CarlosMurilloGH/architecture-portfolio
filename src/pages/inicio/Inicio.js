@@ -3,7 +3,6 @@ import { ref, listAll,getDownloadURL } from 'firebase/storage';
 import { storage } from '../../fb/fb';
 import Box from '@mui/material/Box';
 import "./Inicio.css";
-import Panel from '../panel/Panel';
 import { Masonry } from '@mui/lab';
 
 
@@ -25,7 +24,6 @@ export default function Inicio() {
 
   return (
     <Box m={2} pt={1}>
-      <Panel />
       <Masonry columns={{xs: 1, sm: 2, md: 4}} spacing={1} >
         {imageUrls.map((url, index) => (
           <div key={index}>
