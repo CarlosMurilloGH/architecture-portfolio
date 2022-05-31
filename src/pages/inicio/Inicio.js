@@ -4,6 +4,7 @@ import { storage } from '../../fb/fb';
 import Box from '@mui/material/Box';
 import "./Inicio.css";
 import { Masonry } from '@mui/lab';
+import { Panel } from '../panel/Panel';
 
 
 
@@ -13,7 +14,7 @@ export default function Inicio() {
   
 
   useEffect(() => {
-    listAll(ref(storage, "/images")).then((response) => {
+    listAll(ref(storage, "/products")).then((response) => {
       response.items.forEach((item) => {
         getDownloadURL(item).then((url) => {
           setImageUrls((prev) => [...prev, url]);
@@ -24,6 +25,7 @@ export default function Inicio() {
 
   return (
     <Box m={2} pt={1}>
+      <Panel />
       <Masonry columns={{xs: 1, sm: 2, md: 4}} spacing={1} >
         {imageUrls.map((url, index) => (
           <div key={index}>
