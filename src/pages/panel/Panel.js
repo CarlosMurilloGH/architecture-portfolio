@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { app } from "../../fb/fb";
 import { Formulario } from "./Formulario";
-import { Masonry } from "@mui/lab";
-import { MasonryGrid } from "./MasonryGrid";
-import { SingleImageList } from "./SingleImageList";
+
 
 const initialState = {
 	id: "",
-	name: "",
-	price: "",
-	description: "",
 	imageURL: "",
 };
 export const Panel = () => {
+	
+	// eslint-disable-next-line
 	const [docs, setDocs] = useState([]);
 	const [data, setData] = useState(initialState);
 	const [selectedFile, setSelectedFile] = useState("");
@@ -20,7 +17,7 @@ export const Panel = () => {
 	const getData = () => {
 		app
 			.firestore()
-			.collection("products")
+			.collection("/portafolio")
 			.get()
 			.then((querySnapshot) => {
 				const data = [];
@@ -32,19 +29,10 @@ export const Panel = () => {
 			.catch((err) => console.error(err));
 	};
 
-	const selectDoc = (id) => {
-		const selected = docs.filter((doc) => doc.id === id);
-		setData({
-			id: id,
-			name: selected[0].name,
-			price: selected[0].price,
-			description: selected[0].description,
-		});
-	};
-
 	const clearData = () => {
 		setData(initialState);
 	};
+
 	const saveData = async () => {
 		if (!data.name) {
 			alert("El nombre es obligatorio");
@@ -53,12 +41,11 @@ export const Panel = () => {
 		if (data.id) {
 			app
 				.firestore()
-				.collection("products")
+				.collection("/portafolio")
 				.doc(data.id)
 				.update({
-					name: data.name,
-					price: data.price,
-					description: data.description,
+					name: data.name
+
 				})
 				.then(() => {
 					console.log("Document successfully updated!");
@@ -68,13 +55,14 @@ export const Panel = () => {
 			const storageRef = app.storage().ref();
 			const filePath = storageRef.child(data.name);
 			await filePath.put(selectedFile);
+			// eslint-disable-next-line
 			const url = await filePath.getDownloadURL();
 			filePath
 				.getDownloadURL()
 				.then((url) => {
 					app
 						.firestore()
-						.collection("products")
+						.collection("/portafolio")
 						.add({
 							...data,
 							imageURL: url,
@@ -94,27 +82,6 @@ export const Panel = () => {
 
   return (
     <div className="homeContainer">
-      <div className="productListGrid">
-            <Masonry columns={{xs: 1, sm: 2, md: 4}} spacing={1}>
-            {docs.length > 0 &&
-          docs.map((doc) => (
-            <div key={doc.id}>
-            <img
-            className="productCardImg"
-            src={`${doc.imageURL}?w=162&auto=format`}
-            alt={doc.name}
-            style={{ borderBottomLeftRadius: 4,
-              borderBottomRightRadius: 4,
-              borderTopLeftRadius:4,
-              borderTopRightRadius:4,
-              display: 'block',
-              margin:'auto',
-              width: '100%' }}
-          />
-            </div>
-                      ))}
-          </Masonry>
-      </div>
       <div className="productformcontainer">
         <Formulario
           data={data}

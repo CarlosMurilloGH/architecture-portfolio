@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React,{useState} from "react";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,28 +9,23 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+
 import Logo from "../../media/logo720studio.png";
+import { Link } from 'react-router-dom';
 
 
 
 const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
 
   return (
     <AppBar position="static" style={{ boxShadow:"none", backgroundColor:"white" }} >
@@ -80,10 +75,10 @@ const ResponsiveAppBar = () => {
               }}
             >
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography>Inicio</Typography>
+                <Typography><Link to="/">Inicio</Link></Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography>Contacto</Typography>
+                <Typography><Link to="/contacto">Contacto</Link></Typography>
               </MenuItem>
             </Menu>
           </Box>
@@ -104,13 +99,13 @@ const ResponsiveAppBar = () => {
             onClick={handleCloseNavMenu}
             sx={{ my: 2, color: 'black', display: 'block' }}
             >
-              Inicio
+              <Link to="/">Inicio</Link>
             </Button>
             <Button
             onClick={handleCloseNavMenu}
             sx={{ my: 2, color: 'black', display: 'block' }}
             >
-              Contacto
+              <Link to="/contacto">Contacto</Link>
             </Button>
           </Box>
 

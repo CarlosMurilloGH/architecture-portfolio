@@ -1,52 +1,55 @@
-import React,{useState,useEffect} from 'react';
-import { ref, listAll,getDownloadURL } from 'firebase/storage';
-import { storage } from '../../fb/fb';
+import React, { useEffect, useState } from "react";
+import { app } from "../../fb/fb";
+import { Masonry } from "@mui/lab";
 import Box from '@mui/material/Box';
 import "./Inicio.css";
-import { Masonry } from '@mui/lab';
-import { Panel } from '../panel/Panel';
-
 
 
 export default function Inicio() {
 
-  const [imageUrls, setImageUrls] = useState([]);
-  
+  const [docs, setDocs] = useState([]);
 
-  useEffect(() => {
-    listAll(ref(storage, "/products")).then((response) => {
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImageUrls((prev) => [...prev, url]);
-        });
-      });
-    });
-  }, []);
+
+	const getData = () => {
+		app
+			.firestore()
+			.collection("/portafolio")
+			.get()
+			.then((querySnapshot) => {
+				const data = [];
+				querySnapshot.forEach((doc) => {
+					data.push({ ...doc.data(), id: doc.id });
+				});
+				setDocs(data);
+			})
+			.catch((err) => console.error(err));
+	};
+
+	useEffect(() => {
+		getData();
+	}, []);
 
   return (
     <Box m={2} pt={1}>
-      <Panel />
-      <Masonry columns={{xs: 1, sm: 2, md: 4}} spacing={1} >
-        {imageUrls.map((url, index) => (
-          <div key={index}>
+        <Masonry columns={{xs: 1, sm: 2, md: 4}} spacing={1}>
+            {docs.length > 0 &&
+          docs.map((doc) => (
+            <div key={doc.id}>
             <img
-              src={`${url}?w=162&auto=format`}
-              srcSet={`${url}?w=162&auto=format&dpr=2 2x`}
-              alt={url.title}
-              loading="lazy"
-              style={{
-                borderBottomLeftRadius: 4,
-                borderBottomRightRadius: 4,
-                borderTopLeftRadius:4,
-                borderTopRightRadius:4,
-                display: 'block',
-                margin:'auto',
-                width: '100%'
-              }}
-            />
-          </div>
-        ))}
-        </Masonry>
+            className="productCardImg"
+            src={`${doc.imageURL}?w=162&auto=format`}
+            alt={doc.name}
+            style={{ borderBottomLeftRadius: 4,
+              borderBottomRightRadius: 4,
+              borderTopLeftRadius:4,
+              borderTopRightRadius:4,
+              display: 'block',
+              margin:'auto',
+              width: '100%' }}
+          />
+            </div>
+                      ))}
+          </Masonry>
     </Box>
   );
 }

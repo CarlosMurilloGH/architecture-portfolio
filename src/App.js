@@ -6,7 +6,6 @@ import Login from './pages/login/Login';
 import {Route,Routes} from "react-router-dom";
 import {Panel} from './pages/panel/Panel';
 import {RequireAuth} from "./fb/RequireAuth";
-import Footer from './layout/footer/Footer';
 
 
 function App() {
@@ -14,7 +13,6 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-        
         <Route>
           <Route exact path="/" element={<Inicio />} />
           <Route exact path="/contacto" element={<Contacto />} />
@@ -23,10 +21,8 @@ function App() {
 
         <Route element={<RequireAuth />}>
           <Route path="/panel" element={<Panel />} />
-        </Route>
-        
+        </Route>       
       </Routes>
-      <Footer />
     </div>
   );
 }

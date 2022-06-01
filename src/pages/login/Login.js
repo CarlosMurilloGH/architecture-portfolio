@@ -5,6 +5,8 @@ import {
 } from "firebase/auth";
 import { auth } from "../../fb/fb";
 import { useLocation, useNavigate } from "react-router";
+import { Button,TextField,Grid } from "@mui/material";
+import {Container} from "@mui/system";
 
 function Login() {
 
@@ -39,15 +41,27 @@ function Login() {
 
 
   return (
-    <div className="Loginregistercontainer">
-
-      <div className="formscontainer">
-
-        <div className="formbox">
-          <h2 className="titlelogin"> Inicia tu sesión </h2>
-          <div className="inputcontainer">
-            <div className="inputbox">
-              <input
+    <Grid
+    container
+    spacing={0}
+    direction="column"
+    alignItems="center"
+    justifyContent="center"
+    style={{ minHeight: "100vh" }}
+  >
+    <Grid item xs={3}>
+    <Container>
+          <h2> Inicia tu sesión </h2>
+          <div>
+            <div>
+              <TextField
+              fullWidth 
+              margin="dense"
+              size="small"
+              id="filled-basic"
+              label="Email"
+              variant="filled"
+                type="email"
                 className="inputstyle"
                 placeholder="Email"
                 onChange={(event) => {
@@ -55,8 +69,14 @@ function Login() {
                 }}
               />
             </div>
-            <div className="inputbox">
-            <input
+            <div>
+            <TextField
+            fullWidth 
+            margin="dense"
+            size="small"
+            id="filled-basic"
+            label="Contraseña"
+            variant="filled"
               className="inputstyle"
               placeholder="Contraseña"
               type="password"
@@ -65,15 +85,13 @@ function Login() {
               }}
             />
             </div>
-            <div className="botoncontainer">
-              <button className="botonlogin" onClick={login}>Iniciar</button>
+            <div>
+              <Button fullWidth variant="contained" component="label" onClick={login}>Iniciar</Button>
             </div>
-          </div>
-        </div>
-
-      </div>
-      
-    </div>
+            </div>
+          </Container>
+        </Grid>
+      </Grid>
   );
 }
 
