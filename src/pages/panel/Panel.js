@@ -70,6 +70,7 @@ export const Panel = () => {
 				})
 				.then(() => {
 					getData();
+					window.alert("subido correctamente");
 				})
 				.catch((error) => console.error(error));
 		}
@@ -84,7 +85,7 @@ export const Panel = () => {
     <div className="homeContainer">
       <div className="productformcontainer">
         <Formulario
-          data={data}
+          data={data} 
           setData={setData}
           clearData={clearData}
           saveData={saveData}

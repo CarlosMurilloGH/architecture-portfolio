@@ -21,6 +21,7 @@ export const Formulario = (props) => {
     >
       <Grid item xs={3}>
 		  <Container>
+			<h1>Sube tu imagen</h1>
 			<form className="productForm">
 			<div className="uploadbox">
 				<Button variant="contained" component="label">
