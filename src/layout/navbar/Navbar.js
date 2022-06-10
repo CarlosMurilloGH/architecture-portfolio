@@ -74,11 +74,12 @@ const ResponsiveAppBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
+              {/* ITEMS CELULAR */}
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography><Link to="/">Inicio</Link></Typography>
+                <Typography style={{ textDecoration: 'none', color:'black' }} ><Link to="/" style={{ textDecoration: 'none', color:'black', fontWeight:600 }}>Inicio</Link></Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography><Link to="/contacto">Contacto</Link></Typography>
+                <Typography style={{ textDecoration: 'none', color:'black' }}><Link to="/contacto" style={{ textDecoration: 'none', color:'black', fontWeight:600 }}>Contacto</Link></Typography>
               </MenuItem>
             </Menu>
           </Box>
@@ -97,15 +98,15 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Button
             onClick={handleCloseNavMenu}
-            sx={{ my: 2, color: 'black', display: 'block' }}
+            sx={{ my: 2, color: 'black', display: 'block' ,textDecoration: 'none'}}
             >
-              <Link to="/">Inicio</Link>
+              <Link to="/" style={{ textDecoration: 'none', color:'black', fontSize:15, fontWeight:600 }}>Inicio</Link>
             </Button>
             <Button
             onClick={handleCloseNavMenu}
-            sx={{ my: 2, color: 'black', display: 'block' }}
+            sx={{ my: 2, color: 'black', display: 'block',textDecoration: 'none' }}
             >
-              <Link to="/contacto">Contacto</Link>
+              <Link to="/contacto" style={{ textDecoration: 'none', color:'black', fontSize:15, fontWeight:600 }}>Contacto</Link>
             </Button>
           </Box>
 

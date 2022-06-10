@@ -1,0 +1,19 @@
+.css-re1aun-MuiMasonry-root{
+    margin:0px!important;
+}
+.css-12kmrxv-MuiMasonry-root{
+    margin:0px!important;
+}
+
+.css-1n8ymll-MuiMasonry-root{
+    margin:0px!important;
+}
+
+.imagegrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.imagegrid img{
+    width: 500px;
+}
