@@ -1,105 +1,86 @@
+import React,{useRef} from "react"
 import {  
   Typography,
-  Container,
-  Grid,
-  Button,
   TextField,
-  Box,
+  Button,
+  FormControl,
+  Paper,
+  Container
  } from "@mui/material";
-
-
-
+ import InstagramIcon from '@mui/icons-material/Instagram';
+ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+ import "./Contacto.css";
+ import emailjs from '@emailjs/browser';
 
 function Contacto() {
 
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm(
+        "service_uhmi3gc",
+        "template_5rwkxer",
+        form.current,
+        "mYaN8DqL44vIhv2wq"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          console.log("message sent");
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
+
+
   return (
-    <Container component="main" maxWidth="md">
+    <div className="contactcontainer">
+      <Container sx={{minWidth: "100%",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center"}}>
+        <Paper sx={{
+          maxWidth: "70%",
+          minWidth:"40%",
+          minHeight: "50vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent:'space-around',
+          m:'auto',
+          p:3
+        }}>
       <div>
-        <Typography variant="h2" flexGrow={1} textAlign="center" m={2} fontSize={40}>
-            Sigueme en mis redes
-        </Typography>
-        <Box>
-          <Grid container spacing={2} mb={2}>
-
-            <Grid item xs={12} sm={6}>
-              <Typography variant="p" flexGrow={1} textAlign="center" m={2} fontSize={25}>
-                Instagram
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Typography variant="p" flexGrow={1} textAlign="center" m={2} fontSize={25}>
-                WhatsApp
-              </Typography>
-            </Grid>
-
-          </Grid>
-        </Box>
+        <Container>
+        
+        <Container sx={{p:3}}>
+          <a href="https://www.instagram.com/studio720.arq/"><InstagramIcon fontSize="large"/></a>
+        </Container>
+        <Container sx={{p:3}}>
+          <a href="wa.link/hmayuu"><WhatsAppIcon fontSize="large"/></a>
+        </Container>
+        </Container>
       </div>
-      <div >
-        <Typography variant="h1" flexGrow={1} textAlign="center" m={2} fontSize={40}>
+      <div className="formcontainer">
+        <Container>
+        <Typography variant="h1" flexGrow={1} textAlign="center" m={2} sx={{ fontSize:{xs:20, sm:20, lg:40} }}>
           Contactame
         </Typography>
-        <form noValidate>
-          <Grid container spacing={2} mb={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="mensaje"
-                label="Tu mensaje"
-                name="mensaje"
-                multiline
-                rows={4}
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
-            Contactame
-          </Button>
-        </form>
+        <FormControl ref={form} onSubmit={sendEmail} className="form-control form-control-lg">
+        <TextField label="Nombre" variant="outlined" margin="dense"  type="text" name="user_name" />
+        <TextField label="Email" variant="outlined" margin="dense"  type="email" name="user_email" />
+        <TextField label="Mensaje" placeholder="Mensaje" margin="dense"  multilinename="Mensaje" multiline rows={4} name="message"/>
+        <Button type="submit" variant="contained" value="Enviar">Enviar</Button>
+      </FormControl>
+      </Container>
       </div>
-
-    </Container>
+      </Paper>
+      </Container>
+    </div>
   );
 }
 

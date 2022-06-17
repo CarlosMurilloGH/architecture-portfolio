@@ -1,0 +1,12 @@
+.contactcontainer{
+    background-image: url("../../media/contacto.png");
+    min-height: 90vh;
+    height: 1080px;
+    background-size: cover;
+    object-fit: cover;
+    background-repeat: no-repeat;
+}
+
+.formcontainer{
+    width:100%;
+}

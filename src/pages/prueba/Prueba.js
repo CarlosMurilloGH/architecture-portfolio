@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { app } from "../../fb/fb";
 import { Masonry } from "@mui/lab";
-import { Button, Modal,Box } from '@mui/material';
+import { Button, Modal } from '@mui/material';
 import "./Prueba.css";
 
 
@@ -19,6 +19,7 @@ export default function Prueba() {
 				const data = [];
 				querySnapshot.forEach((doc) => {
 					data.push({ ...doc.data(), id: doc.id });
+          console.log(doc);
 				});
 				setDocs(data);
 			})
