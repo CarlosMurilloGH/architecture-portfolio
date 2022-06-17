@@ -46,23 +46,20 @@ function Contacto() {
     justifyContent: "center"}}>
         <Paper sx={{
           maxWidth: "70%",
-          minWidth:"40%",
+          minWidth:{xs:"90%",lg:"40%"},
           minHeight: "50vh",
-          display: "flex",
+          display: {xs:"block",lg:"flex"},
           alignItems: "center",
           justifyContent:'space-around',
           m:'auto',
           p:3
         }}>
       <div>
-        <Container>
+        <Container sx={{display:{xs:'flex',md:'flex',lg:'block'},  justifyContent:'space-around' }}>
         
-        <Container sx={{p:3}}>
           <a href="https://www.instagram.com/studio720.arq/"><InstagramIcon fontSize="large"/></a>
-        </Container>
-        <Container sx={{p:3}}>
           <a href="wa.link/hmayuu"><WhatsAppIcon fontSize="large"/></a>
-        </Container>
+
         </Container>
       </div>
       <div className="formcontainer">
