@@ -58,7 +58,7 @@ function Contacto() {
         <Container sx={{display:{xs:'flex',md:'flex',lg:'block'},  justifyContent:'space-around' }}>
         
           <a href="https://www.instagram.com/studio720.arq/"><InstagramIcon fontSize="large"/></a>
-          <a href="wa.link/hmayuu"><WhatsAppIcon fontSize="large"/></a>
+          <a href="https://www.wa.link/hmayuu"><WhatsAppIcon fontSize="large"/></a>
 
         </Container>
       </div>
