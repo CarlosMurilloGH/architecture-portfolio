@@ -3,13 +3,18 @@ import { app } from "../../fb/fb";
 import { Masonry } from "@mui/lab";
 import Box from '@mui/material/Box';
 import "./Inicio.css";
+import { Modal } from "@mui/material";
 
 
 export default function Inicio() {
 
   const [docs, setDocs] = useState([]);
+  const [urlphoto,setUrlphoto] =useState("");
+  
+  const [open, setOpen] = useState(false);
+  const handleClose = () => setOpen(false);
 
-
+  //get documents from firebase
 	const getData = () => {
 		app
 			.firestore()
@@ -22,12 +27,18 @@ export default function Inicio() {
 				});
 				setDocs(data);
 			})
-			.catch((err) => console.error(err));
 	};
 
 	useEffect(() => {
 		getData();
-	}, []);
+	}, []);  
+
+  //get url from the clicked photo
+   const getPhotoUrl=async(imageURL)=>{
+     await setUrlphoto(imageURL);
+     console.log(setUrlphoto);
+     setOpen(true);
+  }
 
   return (
     <Box m={2} pt={1}>
@@ -45,11 +56,17 @@ export default function Inicio() {
               borderTopRightRadius:4,
               display: 'block',
               margin:'auto',
-              width: '100%' }}
+              width: '100%' 
+            }}
+            onClick={(e)=>getPhotoUrl(doc.imageURL)}
           />
             </div>
                       ))}
           </Masonry>
+
+          <Modal open={open} onClose={handleClose}>
+            <img src={setUrlphoto} alt="firebae" />
+          </Modal>
     </Box>
   );
 }

@@ -10,6 +10,9 @@ export default function Prueba() {
   const [docs, setDocs] = useState([]);
 
 
+/**
+ * It gets the data from the firestore database and sets it to the state of the component.
+ */
 	const getData = () => {
 		app
 			.firestore()
