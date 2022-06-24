@@ -36,8 +36,6 @@ export default function Inicio() {
   //get url from the clicked photo
    const getPhotoUrl=(imageURL)=>{
      setUrlphoto(imageURL);
-     console.log("este es el estado de imageURL:" + imageURL );
-     console.log("este es el estado de setUrlphoto:" + setUrlphoto );
      setOpen(true);
   }
 
@@ -65,8 +63,8 @@ export default function Inicio() {
                       ))}
           </Masonry>
 
-          <Modal open={open} onClose={handleClose}>
-            <img src={urlphoto} alt="firebae" />
+          <Modal open={open} onClose={handleClose} className="lightboxcontainer">
+            <img className="lightbox" src={urlphoto} alt="firebae" />
           </Modal>
     </Box>
   );
