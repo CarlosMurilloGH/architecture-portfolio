@@ -20,3 +20,9 @@
     margin-top:5rem;
     margin-bottom: 5rem;
 }
+
+@media (max-width: 800px){
+    .lightbox{
+        max-width: 95vw!important;
+    }
+}
