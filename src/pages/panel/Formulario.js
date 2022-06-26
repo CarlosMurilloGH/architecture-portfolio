@@ -1,8 +1,7 @@
 import React from "react";
 import { Button,Input,TextField,Grid } from "@mui/material";
 import { Container } from "@mui/system";
-import { signOut } from 'firebase/auth';
-import {auth} from '../../fb/fb';
+
 
 
 export const Formulario = (props) => {
@@ -12,10 +11,6 @@ export const Formulario = (props) => {
     e.preventDefault();
     saveData();
   };
-
-//   const logout = async () => {
-//     await signOut(auth);
-//   };
 
   return (
     <Grid

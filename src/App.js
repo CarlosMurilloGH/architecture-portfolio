@@ -21,10 +21,6 @@ function App() {
           <Route path="/panel" element={<Panel />} />
 
         </Route>
-
-        {/* <Route element={<RequireAuth />}>
-          <Route path="/panel" element={<Panel />} />
-        </Route>        */}
       </Routes>
     </div>
   );
