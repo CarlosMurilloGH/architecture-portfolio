@@ -58,7 +58,6 @@ function Login() {
               fullWidth 
               margin="dense"
               size="small"
-              id="filled-basic"
               label="Email"
               variant="filled"
                 type="email"
@@ -74,7 +73,6 @@ function Login() {
             fullWidth 
             margin="dense"
             size="small"
-            id="filled-basic"
             label="Contraseña"
             variant="filled"
               className="inputstyle"

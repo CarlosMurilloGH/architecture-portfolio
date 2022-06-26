@@ -1,6 +1,9 @@
 import React from "react";
 import { Button,Input,TextField,Grid } from "@mui/material";
 import { Container } from "@mui/system";
+import { signOut } from 'firebase/auth';
+import {auth} from '../../fb/fb';
+
 
 export const Formulario = (props) => {
   const { data, setData, saveData, setSelectedFile } = props;
@@ -8,6 +11,10 @@ export const Formulario = (props) => {
   const submitHandler = async (e) => {
     e.preventDefault();
     saveData();
+  };
+
+  const logout = async () => {
+    await signOut(auth);
   };
 
   return (
@@ -51,6 +58,9 @@ export const Formulario = (props) => {
 				Subir
 			</Button>
 			</form>
+			<Button variant="contained" component="label" onClick={logout} sx={{mt:3}}>
+			Cerrar sesión
+			</Button>
 		</Container>
       </Grid>
     </Grid>

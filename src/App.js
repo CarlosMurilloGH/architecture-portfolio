@@ -5,7 +5,7 @@ import Inicio from './pages/inicio/Inicio';
 import Login from './pages/login/Login';
 import {Route,Routes} from "react-router-dom";
 import {Panel} from './pages/panel/Panel';
-import {RequireAuth} from "./fb/RequireAuth";
+// import {RequireAuth} from "./fb/RequireAuth";
 import Prueba from './pages/prueba/Prueba';
 
 
@@ -19,11 +19,13 @@ function App() {
           <Route exact path="/contacto" element={<Contacto />} />
           <Route exact path="/prueba" element={<Prueba />} />
           <Route path="/iniciar" element={<Login />} />
+          <Route path="/panel" element={<Panel />} />
+
         </Route>
 
-        <Route element={<RequireAuth />}>
+        {/* <Route element={<RequireAuth />}>
           <Route path="/panel" element={<Panel />} />
-        </Route>       
+        </Route>        */}
       </Routes>
     </div>
   );
