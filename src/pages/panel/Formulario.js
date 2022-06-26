@@ -58,9 +58,9 @@ export const Formulario = (props) => {
 				Subir
 			</Button>
 			</form>
-			<Button variant="contained" component="label" onClick={logout} sx={{mt:3}}>
+			{/* <Button variant="contained" component="label" onClick={logout} sx={{mt:3}}>
 			Cerrar sesión
-			</Button>
+			</Button> */}
 		</Container>
       </Grid>
     </Grid>
