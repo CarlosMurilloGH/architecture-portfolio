@@ -13,9 +13,9 @@ export const Formulario = (props) => {
     saveData();
   };
 
-  const logout = async () => {
-    await signOut(auth);
-  };
+//   const logout = async () => {
+//     await signOut(auth);
+//   };
 
   return (
     <Grid
@@ -58,9 +58,6 @@ export const Formulario = (props) => {
 				Subir
 			</Button>
 			</form>
-			{/* <Button variant="contained" component="label" onClick={logout} sx={{mt:3}}>
-			Cerrar sesión
-			</Button> */}
 		</Container>
       </Grid>
     </Grid>

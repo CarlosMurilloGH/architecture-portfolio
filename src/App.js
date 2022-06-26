@@ -5,7 +5,6 @@ import Inicio from './pages/inicio/Inicio';
 import Login from './pages/login/Login';
 import {Route,Routes} from "react-router-dom";
 import {Panel} from './pages/panel/Panel';
-// import {RequireAuth} from "./fb/RequireAuth";
 import Prueba from './pages/prueba/Prueba';
 
 
