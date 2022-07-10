@@ -14,6 +14,8 @@ export default function Inicio() {
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
 
+  const [isLoading,setIsLoading] = useState(true);
+
   //get documents from firebase
 	const getData = () => {
 		app
@@ -31,6 +33,7 @@ export default function Inicio() {
 
 	useEffect(() => {
 		getData();
+    setIsLoading(false);
 	}, []);  
 
   //get url from the clicked photo
@@ -41,6 +44,7 @@ export default function Inicio() {
 
   return (
     <Box m={2} pt={1}>
+      {isLoading && <p>eta cargando</p>}
         <Masonry columns={{xs: 1, sm: 2, md: 4}} spacing={1}>
             {docs.length > 0 &&
           docs.map((doc) => (

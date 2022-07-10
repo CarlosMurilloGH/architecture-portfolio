@@ -21,6 +21,10 @@
     margin-bottom: 5rem;
 }
 
+.productCardImg{
+    cursor: pointer;
+}
+
 @media (max-width: 800px){
     .lightbox{
         max-width: 95vw!important;
